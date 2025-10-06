@@ -1,84 +1,235 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu</title>
-  <link rel="stylesheet" href="stylsheet.css">
-</head>
-<body>
+/* ========== Global Reset & Base Styles ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
 
-  <!-- Header -->
-  <header class="header">
-    <h1>Menu</h1>
-    <div class="cart">🛒</div>
-  </header>
+body {
+  background: #f5f8f7; /* Light background for clean look */
+  color: #333;
+  padding-bottom: 60px; /* Space for bottom nav */
+}
 
-  <!-- Search -->
-  <div class="search-bar">
-    <input type="text" placeholder="Search...">
-  </div>
+/* ========== Header ========== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+  position: sticky; /* stays at top */
+  top: 0;
+  z-index: 100;
+}
 
-  <!-- Categories -->
-  <nav class="categories">
-    <button class="active">All</button>
-    <button>Breakfast</button>
-    <button>Lunch</button>
-    <button>Treats</button>
-    <button>Dessert</button>
-   <a href="water.html" class="category-btn">Drinks</a>
+.header h1 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #222;
+}
 
-  </nav>
+.cart {
+  font-size: 1.6rem;
+  cursor: pointer;
+}
 
-  <!-- Menu grid -->
-  <section class="menu-grid">
-    <div class="card">
-      <img src="https://source.unsplash.com/300x200/?pancake" alt="Pear & Orange">
-      <h3>Pear & Orange</h3>
-      <div class="info">
-        <span>⏱️ 20 min</span>
-        <span>⭐ 4.8</span>
-      </div>
-      <p class="price">25.00$</p>
-    </div>
+/* ========== Search Bar ========== */
+.search-bar {
+  padding: 0.8rem 1rem;
+  background: #f9f9f9;
+}
 
-    <div class="card">
-      <img src="https://source.unsplash.com/300x200/?mushroom" alt="Meat & Mushrooms">
-      <h3>Meat & Mushrooms</h3>
-      <div class="info">
-        <span>⏱️ 30 min</span>
-        <span>⭐ 5.0</span>
-      </div>
-      <p class="price">37.00$</p>
-    </div>
+.search-bar input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
 
-    <div class="card">
-      <img src="https://source.unsplash.com/300x200/?toast" alt="Egg & Bread">
-      <h3>Egg & Bread</h3>
-      <div class="info">
-        <span>⏱️ 10 min</span>
-        <span>⭐ 4.7</span>
-      </div>
-      <p class="price">25.00$</p>
-    </div>
+.search-bar input:focus {
+  border-color: #3bb49d; /* Highlight color */
+  box-shadow: 0 0 5px rgba(59, 180, 157, 0.5);
+}
 
-    <div class="card">
-      <img src="https://source.unsplash.com/300x200/?dessert" alt="Sweet Pancake">
-      <h3>Sweet Pancake</h3>
-      <div class="info">
-        <span>⏱️ 10 min</span>
-        <span>⭐ 4.9</span>
-      </div>
-      <p class="price">13.00$</p>
-    </div>
-  </section>
+/* ========== Categories Navigation ========== */
+.categories {
+  display: flex;
+  overflow-x: auto; /* Scrollable if too many buttons */
+  padding: 0.8rem 1rem;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
 
-  <!-- Bottom navigation -->
-  <footer class="bottom-nav">
-    <button>❤️ Menu</button>
-    <button>📖 Orders</button>
-    <button>👤 Profile</button>
-  </footer>
+.categories button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
 
-</body>
-</html>
+.categories button:hover {
+  background: #e0e0e0;
+}
+
+.categories .active {
+  background: #3bb49d;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* ========== Menu Grid ========== */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem 0.7rem 0 0.7rem;
+  color: #222;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0.5rem 0.7rem 0.8rem 0.7rem;
+  color: #3bb49d;
+}
+
+/* ========== Bottom Navigation ========== */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.7rem 0;
+  background: #ffffff;
+  border-top: 1px solid #ddd;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.bottom-nav button {
+  border: none;
+  background: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #444;
+  transition: 0.3s;
+}
+
+.bottom-nav button:hover {
+  color: #3bb49d;
+}
+/* ========== Categories Navigation ========== */
+.categories {
+  display: flex;
+  overflow-x: auto;
+  padding: 0.8rem 1rem;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+.categories button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect: lift up and change color */
+.categories button:hover {
+  background: #e8f7f4;
+  transform: translateY(-3px);
+}
+
+/* Active (clicked) state */
+.categories button.active {
+  background: #3bb49d;
+  color: #ffffff;
+  font-weight: bold;
+  transform: translateY(-3px);
+}
+.category-btn {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-decoration: none; /* remove underline */
+  color: inherit;        /* keep text color */
+  transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+  background: #e8f7f4;
+  transform: translateY(-3px);
+}
+
+.category-btn.active {
+  background: #3bb49d;
+  color: #ffffff;
+  font-weight: bold;
+}
+.card img {
+  width: 100%;
+  height: 200px;       /* 🔼 Increase height for bigger images */
+  object-fit: cover;   /* Keeps images nicely cropped */
+  border-bottom: 1px solid #f9f7f7; /* Light line between image and text */
+}
+.card {
+  background: #f4f2f0;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  padding-bottom: 0.8rem; /* 🔼 Add space below image for text */
+}
